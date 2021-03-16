@@ -1,12 +1,8 @@
 <?php 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
 require_once('./creditkey/init.php');
 $json = file_get_contents('php://input');
 file_put_contents('logs/3DcartPayloadCancel.txt', $json);   
 $jsonDecord = json_decode($json);
-//$jsonDecord = json_decode('{"type":"void","orderid":120,"invoice":"AB-1038","transactionid":"CK-SQK4457","username":"dcartsandbox_b19c961c7a5e4ed8a0491e8d546aded3","password":"7646b84d48584d4ba42a34b6c76f0120","currency":"USD","amounttotal":4798,"is_full_refund":true,"randomkey":"p5dnamcfxpnjB048DB894C7B4A75B05E","signature":"8798e081221ed429e6cbab468dab6f86","testmode":1}');
 
 $sqlSelectOrder = "SELECT * FROM `ck_order` WHERE orderid = '".$jsonDecord->orderid."' ";
 $resultOrder = $con->query($sqlSelectOrder);
